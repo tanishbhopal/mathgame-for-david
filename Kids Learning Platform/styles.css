@@ -1,0 +1,362 @@
+/* REMOVE DUPLICATES  CLEAN UP */
+
+/* General Styles */
+body {
+    font-family: 'Chalkboard SE', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.game-title {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+.menu-button {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    z-index: 1000;
+}
+
+.menu-button:hover {
+    background-color: #45a049;
+}
+
+/* Audio Controls */
+.audio-control {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    z-index: 1000;
+}
+
+.audio-control:hover {
+    background-color: #45a049;
+}
+
+.audio-control.muted {
+    background-color: #f44336;
+}
+
+/* Game Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1;
+}
+
+.controls button:hover {
+    background-color: #45a049;
+}
+
+.controls button.active {
+    background-color: #357a38;
+}
+
+.difficulty-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.difficulty-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.difficulty-controls button.active {
+    background-color: #1976D2;
+}
+
+/* Game Area */
+.game-area {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.timer {
+    text-align: right;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.problem {
+    font-size: 2em;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.option-button {
+    padding: 15px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.option-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Stats Area */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat-box {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin: 0 0 10px 0;
+}
+
+/* Multiplayer Area */
+.multiplayer-area {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.player-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.player-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.player-box h3 {
+    margin: 0 0 15px 0;
+    color: #4CAF50;
+}
+
+.player-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2em;
+}
+
+.player-stats div {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+.player1 {
+    border-left: 4px solid #2196F3;
+}
+
+.player2 {
+    border-left: 4px solid #f44336;
+}
+
+/* Countdown and Announcements */
+.countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6em;
+    color: #4CAF50;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+
+.countdown.show {
+    opacity: 1;
+}
+
+.winner-announcement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    color: #4CAF50;
+    background-color: rgba(255,255,255,0.9);
+    padding: 20px 40px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    pointer-events: none;
+}
+
+.winner-announcement.show {
+    opacity: 1;
+}
+
+/* Feedback */
+.feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.feedback.show {
+    opacity: 1;
+}
+
+.feedback.correct {
+    color: #4CAF50;
+}
+
+.feedback.incorrect {
+    color: #f44336;
+}
+
+.animation-container {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Report Card Page Styles */
+.report-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.report-container h1 {
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}
+
+.report-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-stat {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.report-stat h3 {
+    color: #4CAF50;
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.report-stat p {
+    margin: 0;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.volume-control {
+    position: fixed;
+    right: 20px;
+    top: 70px;  /* Positions it below the music button */
+    z-index: 1000;
+}
+
+.volume-slider {
+    width: 100px;
+    cursor: pointer;
+}
